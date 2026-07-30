@@ -14,7 +14,6 @@ from xgboost import XGBRegressor
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_absolute_percentage_error
 
-!pip install xgboost
 
 df= pd.read_csv('data.csv')
 
