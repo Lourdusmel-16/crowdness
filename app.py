@@ -28,7 +28,6 @@ day_mapping = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday
 day_of_week = day_mapping[day_name]
 
 if st.button("Predict Occupancy", type="primary"):
-    # Pass all 8 features in the exact column order from your dataset
     features = np.array([[day_of_week, is_weekend, is_holiday, temperature, is_start_of_semester, is_during_semester, month, hour]])
     
     prediction = model.predict(features)[0]
