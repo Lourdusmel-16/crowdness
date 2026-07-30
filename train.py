@@ -14,6 +14,7 @@ from xgboost import XGBRegressor
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_absolute_percentage_error
 
+!pip install xgboost
 
 df= pd.read_csv('data.csv')
 
@@ -22,9 +23,24 @@ df['hour']= df['timestamp'].dt.hour
 df['day_of_week']= df['timestamp'].dt.dayofweek
 df['month']= df['timestamp'].dt.month
 
-df = df.drop(columns = ['date','timestamp'])
+df['lag_1'] = df['number_people'].shift(1)
+df['lag_24'] = df['number_people'].shift(24)
+df['rolling_mean_3'] = df['number_people'].rolling(window=3).mean()
 
-X = df.iloc[:,2:];
+df = df.dropna().reset_index(drop=True)
+
+df = df.drop(columns = ['date','timestamp'])
+features= [
+    'day_of_week',
+    'is_weekend',
+    'is_holiday',
+    'temperature',
+    'is_start_of_semester',
+    'is_during_semester',
+    'month',
+    'hour', 'lag_1', 'lag_24', 'rolling_mean_3'
+]
+X = df[features];
 y = df.iloc[:,0]
 
 t_split = TimeSeriesSplit(n_splits=3)
@@ -49,12 +65,13 @@ for f,(train_idx,test_idx) in enumerate(t_split.split(y)):
   print(f'Mape for {f}: {mape}')
 R2 = np.mean(r2hist)
 mape = np.mean(mapehist)
+rmse = np.sqrt(np.mean(np.square(y_pred - y_test)))
+print(f'RMSE: {rmse}')
 print(f'Mape: {mape}')
 print(f'R2: {R2}')
 model.fit(X,y)
 
-os.makedirs("models", exist_ok=True)
-with open("models/crowd_model.pkl", "wb") as f:
+with open("crowd_model.pkl", "wb") as f:
     pickle.dump(model, f)
 print("Model trained and saved successfully!")
 
