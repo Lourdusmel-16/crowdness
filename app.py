@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 
-st.set_page_config(page_title="Campus Crowd Predictor", page_icon="🏛️", layout="centered")
+st.set_page_config(page_title="Campus Crowd Predictor", layout="centered")
 
 st.title("🏛️ Campus Resource & Crowd Density Predictor")
 st.write("Predict real-time campus occupancy using machine learning to avoid rush hours.")
