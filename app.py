@@ -27,7 +27,7 @@ if st.button("Predict Occupancy", type="primary"):
     prediction = model.predict(features)[0]
     
     st.markdown("---")
-    st.metric(label="Estimated People Count", value=f"{int(prediction)} occupants")
+    st.metric(label="Estimated People Count", value=f"{int(prediction)}, delta="occupants")
     
     if prediction > 50:
         st.error("⚠️ **High Congestion Warning:** Consider visiting later.")
