@@ -2,7 +2,7 @@
 
 A machine learning web application that predicts campus crowd levels to help students and staff avoid rush hours.
 
-🔗 **Live App:** [View Live Streamlit App]([https://crowdness-predictor.streamlit.app/])
+🔗 **Live App:** [View Live Streamlit App](https://crowdness-predictor.streamlit.app/)
 
 ---
 
