@@ -11,7 +11,7 @@ CampusPulse uses historical occupancy data and an XGBoost regression model to es
 
 ### Key Performance Metrics
 * **Model Type:** XGBRegressor
-* **$R^2$ Score:** `0.9604`
+* **R^2Score:** `0.9604`
 * **RMSE:** `2.95` occupants (relative to a 145-person peak scale)
 
 ---
